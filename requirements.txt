@@ -1,0 +1,13 @@
+Django==5.0.7
+django-admin-interface==0.28.8
+django-jazzmin==3.0.0
+langchain==0.2.7
+langchain-community
+weaviate-client==4.6.7
+python-dotenv
+pypdf==4.3.0
+docx2txt==0.8
+sentence-transformers==3.0.1
+openai==0.28.0
+django-crispy-forms==2.3
+langchain-huggingface==0.0.3
