@@ -1,0 +1,225 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+.sidebar {
+    width: 20%;
+    background-color: #343a40;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    position: fixed;
+    height: 100%;
+}
+.conversation-list {
+    flex-grow: 1;
+    padding: 16px;
+    overflow-y: auto;
+}
+.conversation-item {
+    padding: 8px;
+    margin: 4px 0;
+    background-color: #495057;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #ffffff;
+    display: block;
+}
+.conversation-item:hover {
+    background-color: #6c757d;
+}
+.new-conversation-button {
+    background-color: #28a745;
+    color: #ffffff;
+    border: none;
+    padding: 8px;
+    margin: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+}
+.new-conversation-button:hover {
+    background-color: #218838;
+}
+.chat-container {
+    width: 80%;
+    margin-left: 20%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.chat-header {
+    background-color: #6c757d;
+    color: #ffffff;
+    padding: 12px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+.chat-messages {
+    flex-grow: 1;
+    padding: 16px;
+    overflow-y: auto;
+    word-wrap: break-word;
+}
+.user-message, .bot-message {
+    padding: 8px;
+    /* margin: 4px 0; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    max-width: 90%;
+    white-space: pre-wrap;
+}
+.message-icon {
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.message-text {
+    padding: 10px;
+}
+.user-message {
+    background-color: #d2d5d8;
+    /* align-self: flex-end; */
+}
+.bot-message {
+    background-color: #495057;
+    color: #ffffff;
+    /* align-self: flex-start; */
+}
+/* styles.css */
+.chat-input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chat-input-container form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+.chat-input-container input {
+    flex: 1;
+    padding: 10px;
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.send-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.send-button:hover {
+    background-color: #0056b3;
+}
+.chat-send-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+    margin-left: 20px;
+}
+
+.chat-send-button:hover {
+    background-color: #0056b3;
+}
+
+.chat-form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    display: flex;
+    align-items: center; /* Center the label and textarea vertically */
+    margin-bottom: 16px; /* Space between input groups */
+}
+
+.chat-form-container label {
+    margin-right: 10px; /* Space between label and textarea */
+    flex-shrink: 0; /* Prevent the label from shrinking */
+}
+
+.chat-form-container textarea {
+    width: 100%;
+    max-width: 90%;
+    max-height: 100px;
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width */
+    padding: 10px; /* Optional: Add padding for better appearance */
+    border: 1px solid #ccc; /* Optional: Add border for better appearance */
+    border-radius: 4px; /* Optional: Add border radius for rounded corners */
+    resize: vertical; /* Allow vertical resizing only */
+}
+
+.sidebar-header {
+    background-color: #343a40;
+    padding: 12px;
+    text-align: center;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.horizontal-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.horizontal-menu > div {
+    margin-right: 20px;
+}
+
+.horizontal-menu form {
+    display: inline;
+}
+
+.horizontal-menu img {
+    margin-right: 100px;
+}
+
+.conversation-list {
+    flex-grow: 1;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+.conversation-item {
+    padding: 8px;
+    margin: 4px 0;
+}
+.horizontal-menu i {
+    color: #ffffff;
+}

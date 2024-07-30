@@ -1,0 +1,32 @@
+{% extends 'conversations/base.html' %}
+{% load static %}
+
+{% block title %}{{ conversation.title }}{% endblock %}
+
+{% block content %}
+<div class="chat-header">
+    {{ conversation.title }}
+</div>
+<div class="chat-messages" id="chat-messages">
+    {% for interaction in interactions %}
+        <div class="user-message">
+            <i class="fas fa-user message-icon"></i>
+            <span class="message-text"></span>{{ interaction.query }}</span>
+        </div>
+        <div class="bot-message">
+            <i class="fas fa-robot message-icon"></i>
+            <span class="message-text"></span>{{ interaction.response }}</span>
+        </div>
+    {% endfor %}
+</div>
+<div class="chat-form-container">
+    <form method="post" class="input-form" aria-label="Chat input form">
+        {% csrf_token %}
+        <div class="input-group">
+            <label for="id_message"></label>
+            {{ form.query }}
+            <button type="submit" class="chat-send-button" aria-label="Send message">Send</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

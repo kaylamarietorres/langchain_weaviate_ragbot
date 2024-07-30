@@ -1,0 +1,17 @@
+{% extends 'conversations/base.html' %}
+{% load static %}
+
+{% block title %}New Conversation{% endblock %}
+
+{% block content %}
+<div class="chat-header">
+    New Conversation
+</div>
+<div class="chat-input-container">
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="send-button">Create</button>
+    </form>
+</div>
+{% endblock %}

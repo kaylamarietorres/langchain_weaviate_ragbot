@@ -1,0 +1,19 @@
+{% extends "admin/base.html" %}
+{% load i18n static jazzmin admin_urls %}
+<!-- your_app/templates/admin/footer.html -->
+
+{% block title %}
+{% if jazzmin_settings.site_title %}{{ jazzmin_settings.site_title }} {% else %} {{ title }}{% endif %}
+{% endblock %}
+{% block footer %}
+    {% if not is_popup %}
+        <footer class="main-footer {{ jazzmin_ui.footer_classes }}">
+            {% autoescape off %}
+                <strong>{% trans 'Copyright' %} &copy; {% now 'Y' %} {{ jazzmin_settings.copyright }}.</strong> {% trans 'All rights reserved.' %}
+            {% endautoescape %}
+        </footer>
+        {% if jazzmin_settings.show_ui_builder %}
+            {% include 'jazzmin/includes/ui_builder_panel.html' %}
+        {% endif %}
+    {% endif %}
+{% endblock %}

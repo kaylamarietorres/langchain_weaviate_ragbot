@@ -1,0 +1,32 @@
+
+input[type="text"], [type="password"], [type="email"]   {
+    padding:15px 20px;
+	border-radius:25px;
+}
+
+textarea {
+    padding:15px 20px !important;
+	border-radius:25px !important;
+}
+.login-logo img {
+    width: 150px;
+    height: auto;
+}
+
+
+.login-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-logo {
+    margin-bottom: 20px;
+}
+
+.card {
+    width: auto;
+    min-width: 100%;
+}

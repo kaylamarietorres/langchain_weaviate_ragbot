@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ChatGPT Demo{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+</head>
+<body>
+    <div class="sidebar">
+        <nav class="sidebar-header">
+            <div class="horizontal-menu">
+                <div>
+                    <a href="{% url 'index' %}" target="_blank">
+                        <img src="{% static 'images/logo.png' %}" alt="Logo" style="width: 50px; height: auto;">
+                    </a>
+                </div>
+
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <div>
+                            <a href="{% url 'admin:index' %}" target="_blank">
+                                <i class="fas fa-user-shield" title="Admin"></i>
+                            </a>
+                        </div>
+                    {% endif %}
+                    <div>
+                        <a href="{% url 'password_change' %}">
+                            <i class="fas fa-key" title="Change Password"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" style="background: none; border: none; color: inherit; cursor: pointer; padding: 0; font: inherit;">
+                                <i class="fas fa-sign-out-alt" title="Logout"></i>
+                            </button>
+                        </form>
+                    </div>
+                {% else %}
+                    <div><a href="{% url 'login' %}"><i class="fas fa-sign-in-alt" title="Login"></i></a></div>
+                {% endif %}
+            </div>
+        </nav>
+        <button class="new-conversation-button" onclick="location.href='{% url 'new_conversation' %}'">New Conversation</button>
+        <div class="conversation-list">
+            {% for conversation in conversations %}
+                <a href="{% url 'conversation_detail' conversation.conversation_id %}" class="conversation-item">
+                    {{ conversation.title }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="chat-container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="{% static 'js/chatbot.js' %}"></script>
+</body>
+</html>
