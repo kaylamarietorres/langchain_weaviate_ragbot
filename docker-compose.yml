@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  django_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      WEAVIATE_URL: 'http://weaviate:8080'
+      CHAT_URL: 'http://fastapi_app:9000/chat'
+      WEAVIATE_INDEX_NAME: 'RAGBotIndex'
+      WEAVIATE_INDEX_SCHEMA_PATH: '/code/static/weaviate/rag_bot_index_schema.json'
+      FILES_PATH: '/code/temp_files'
+    depends_on:
+      - fastapi_app
+      - weaviate
+    volumes:
+      - temp_files:/code/documents/tempfiles
+      - to/local/db/db.sqlite3:/code/db.sqlite3
+
+  fastapi_app:
+    image: chat_app
+    depends_on:
+      - weaviate
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+
+  weaviate:
+    image: cr.weaviate.io/semitechnologies/weaviate:1.25.8
+    command:
+      - --host
+      - 0.0.0.0
+      - --port
+      - '8080'
+      - --scheme
+      - http
+    ports:
+      - "8080:8080"
+    volumes:
+      - weaviate_data:/var/lib/weaviate
+      - weaviate_backups:/tmp/backups
+    restart: on-failure:0
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      ENABLE_MODULES: 'backup-filesystem'
+      CLUSTER_HOSTNAME: 'node1'
+      BACKUP_FILESYSTEM_PATH: '/tmp/backups'
+volumes:
+    weaviate_data:
+    weaviate_backups:
+    temp_files:
+...
